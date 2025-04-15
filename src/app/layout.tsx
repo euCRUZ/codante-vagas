@@ -1,21 +1,21 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+import Navbar from "@/components/layout/navbar"
+import Footer from "@/components/layout/footer"
+import { Maven_Pro } from "next/font/google"
 
 export const metadata: Metadata = {
-  title: "Codante Vagas",
-  description: "O jeito novo de achar seus objetivos",
+  title: "CodanteVagas",
+  description:
+    "O CodanteVagas conecta candidatos a empregos ideais, oferecendo funcionalidades intuitivas para busca e gerenciamento de vagas.",
 }
+
+const mavenPro = Maven_Pro({
+  subsets: ["latin"],
+  variable: "--font-maven-pro",
+})
+
+console.log()
 
 export default function RootLayout({
   children,
@@ -23,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={mavenPro.variable}>
+      <body>
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   )
