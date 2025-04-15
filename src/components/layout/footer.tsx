@@ -1,5 +1,5 @@
 import { Github, Instagram, Mail } from "lucide-react"
-// import Logo from "./logo"
+import Logo from "./logo"
 import Link from "next/link"
 
 export default function Footer() {
@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="flex bg-black py-4 text-gray-400">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between py-4">
         <div className="w-sm">
-          {/* <Logo bg="dark" /> */}
+          <Logo bg="dark" />
           <p className="mt-3 text-sm font-light">
             O CodanteVagas conecta candidatos a empregos ideais, oferecendo
             funcionalidades intuitivas para busca e gerenciamento de vagas.
