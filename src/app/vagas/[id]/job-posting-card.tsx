@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Badge } from "@/components/ui/badge"
 import Form from "next/form"
 import { Button } from "@/components/ui/button"
@@ -5,10 +6,26 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Briefcase, DollarSign, MapPin, Users } from "lucide-react"
 import Link from "next/link"
-import { Job } from "@/lib/types"
 import { deleteJob } from "@/lib/actions"
+import { notFound } from "next/navigation"
 
-export default function JobPostingCard({ job }: { job: Job }) {
+async function fetchJob(jobId: string) {
+  const res = await fetch(
+    `https://apis.codante.io/api/job-board/jobs/${jobId}`,
+    // `https://apis.codante.io/api/job-board/jobs/${jobId}?slow=true`,
+  )
+  if (!res.ok) return undefined
+  const data = await res.json()
+  return data.data
+}
+
+export default async function JobPostingCard({ jobId }: { jobId: string }) {
+  const job = await fetchJob(jobId)
+
+  if (!job) {
+    notFound()
+  }
+
   return (
     <Card>
       <CardHeader className="space-y-4">
